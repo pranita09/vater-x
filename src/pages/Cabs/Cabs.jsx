@@ -1,4 +1,4 @@
-import "./Cabs.css";
+import styles from "./cabs.module.css";
 
 export const Cabs = () => {
   return (

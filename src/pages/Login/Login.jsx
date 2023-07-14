@@ -1,9 +1,9 @@
-import "./Login.css";
+import styles from "./login.module.css";
 
 export const Login = () => {
   return (
     <div>
-      <h1>Login Page</h1>
+      <h1 className={styles.header}>Login Page</h1>
     </div>
   );
 };

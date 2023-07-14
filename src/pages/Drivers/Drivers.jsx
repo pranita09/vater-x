@@ -1,4 +1,4 @@
-import "./Drivers.css";
+import styles from "./drivers.module.css";
 
 export const Drivers = () => {
   return (

@@ -1,11 +1,12 @@
 .home-container {
-    width: 90rem;
+    width: 90vw;
     margin: 0 auto;
 }
 .select {
     color: #9F9F9F;
     font-size: 1.75rem;
     font-weight: 400;
+    margin-left: 10vw;
 }
 .cards-container {
     display: grid;
@@ -14,9 +15,9 @@
     place-content: center;
     padding-top: 2.5rem;
 }
-.card {
-    width: 34rem;
-    height: 25rem;
+.card, .highlight-card {
+    width: 34vw;
+    height: 45vh;
     border-radius: 1rem;
     box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.2);
     display: grid;
@@ -28,15 +29,6 @@
 }
 .highlight-card {
     border: 3px solid #0CD7D7;
-    width: 34rem;
-    height: 25rem;
-    border-radius: 1rem;
-    box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.2);
-    display: grid;
-    place-content: center;
-    place-items: center;
-    row-gap: 1rem;
-    cursor: pointer;
 }
 .img {
     width: 12rem;
@@ -61,7 +53,8 @@
     border: 1px solid #0CD7D7;
     background: #0CD7D7;
     box-shadow: 0px 8.800000190734863px 33px 0px rgba(0, 0, 0, 0.08);
-    margin: 3rem auto;
+    margin: 0 auto;
+    margin-top: 3rem;
     display: flex;
 }
 .button:hover {

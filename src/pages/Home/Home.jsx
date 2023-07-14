@@ -14,7 +14,7 @@ export const Home = () => {
   return (
     <div className={styles[`home-container`]}>
       <Header />
-      <p className={styles.select}>Select any one from below to continue</p>
+      <span className={styles.select}>Select any one from below to continue</span>
       <main className={styles[`cards-container`]}>
         <section className={highLightCard("1")?styles[`highlight-card`]:styles.card} onClick={()=>setIsActive("1")}>
           <img className={styles.img} src="https://e0.pxfuel.com/wallpapers/181/8/desktop-wallpaper-gintoki-sakata-gintama-funny.jpg" alt="driver-image" />

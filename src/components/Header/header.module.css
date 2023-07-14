@@ -1,0 +1,33 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 3rem;
+}
+.logo {
+    color: #0CD7D7;
+    font-family: Teko;
+    font-size: 2.5625rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+.user-profile-container {
+    display: flex;
+    align-items: center;
+}
+.user-profile-container small {
+    color: #A29B9B;
+    font-family: Poppins;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 1rem;
+    }
+.user-profile-container img {
+    border-radius: 2rem;
+}

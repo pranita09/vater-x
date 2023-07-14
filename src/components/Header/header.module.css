@@ -4,7 +4,7 @@
     align-items: center;
     max-width: 90rem;
     margin: 0 auto;
-    padding: 3rem;
+    padding: 3rem 0;
 }
 .logo {
     color: #0CD7D7;
@@ -30,4 +30,5 @@
     }
 .user-profile-container img {
     border-radius: 2rem;
+    object-fit: cover;
 }

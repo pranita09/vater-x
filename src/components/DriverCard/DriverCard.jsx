@@ -83,6 +83,7 @@ export const DriverCard = ({ driver }) => {
       >
         <MenuItem onClick={()=>handleEditModal()}>Edit</MenuItem>
         <MenuItem onClick={()=>deleteSelectedDriver(driver?.id)}>Delete</MenuItem>
+        <MenuItem onClick={() => setShowDriverDetails(true)}>View Profile</MenuItem>
       </Menu>
 
       {showDriverModal && (
@@ -105,12 +106,6 @@ export const DriverCard = ({ driver }) => {
           <span>{driver?.email}</span>
         </section>
       </main>
-      <button
-        className={styles.button}
-        onClick={() => setShowDriverDetails(true)}
-      >
-        VIEW PROFILE
-      </button>
       {showDriverDetails && (
         <Modal
           open={showDriverDetails}
@@ -120,6 +115,7 @@ export const DriverCard = ({ driver }) => {
             <DriverDetailsModal
               driver={driver}
               setShowDriverDetails={setShowDriverDetails}
+              setAnchorEl={setAnchorEl}
             />
           </>
         </Modal>
@@ -128,17 +124,17 @@ export const DriverCard = ({ driver }) => {
         <img
             className={styles[`driver-img`]}
             alt="img"
-            src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png"
+            src="https://www.shutterstock.com/shutterstock/photos/1748114237/display_1500/stock-photo-bodrum-turkey-suzuki-swift-parked-in-city-park-near-atms-1748114237.jpg"
             width={45}
             height={45}
           />
-          <strong className={styles.name}>{cabs.find(({id})=>id===driverAssignedCab)?.name}</strong>
+          <strong className={styles[`cab-name`]}>{cabs.find(({id})=>id===driverAssignedCab)?.name}</strong>
             <MdOutlineCancel className={styles[`driver-close-icon`]} onClick={()=>removeDriver()} />
           
       </div>} 
       {!driverAssignedCab && <select className={styles.dropdown} value={  driverAssignedCab} onChange={(e)=>handleChange(e)}>
-        <option selected>Assign Driver</option>
-        {cabs.map(({name,id})=><option value={id}>{name}</option>)}
+        <option selected>---Assign Cab---</option>
+        {cabs.map(({name,id,assigned_driver})=>{if(assigned_driver===null) return (<option value={id}>{name}</option>)})}
       </select>}
     </div>
 

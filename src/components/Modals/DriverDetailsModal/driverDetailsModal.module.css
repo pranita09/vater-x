@@ -6,7 +6,6 @@
   box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-shrink: 0;
-  gap: 1rem;
   border: 1px solid gray;
   border-radius: 8px;
   color: #032551;
@@ -57,6 +56,6 @@
   margin-left: auto;
 }
 .cancelIcon:hover {
-  scale: 1.02;
+  color: #428beb;
   cursor: pointer;
 }

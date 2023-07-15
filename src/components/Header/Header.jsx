@@ -1,12 +1,15 @@
 import styles from "./header.module.css";
 
+import { useNavigate } from "react-router";
+
 export const Header = () => {
+  const navigate=useNavigate();
   return (
     <nav className={styles.nav}>
-      <strong className={styles.logo}>VATER-X</strong>
+      <strong className={styles.logo} onClick={()=>navigate("/home")}>VATER-X</strong>
       <span className={styles[`user-profile-container`]}>
         <small>Admin</small>
-        <img alt="admin image" src="https://e0.pxfuel.com/wallpapers/181/8/desktop-wallpaper-gintoki-sakata-gintama-funny.jpg" width={50} height={50} />
+        <img alt="admin" src="https://eclatsuperior.com/wp-content/uploads/2021/04/man3.jpg" width={50} height={50} />
       </span>
     </nav>
   );

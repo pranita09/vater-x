@@ -17,11 +17,11 @@ export const Home = () => {
       <span className={styles.select}>Select any one from below to continue</span>
       <main className={styles[`cards-container`]}>
         <section className={highLightCard("1")?styles[`highlight-card`]:styles.card} onClick={()=>setIsActive("1")}>
-          <img className={styles.img} src="https://e0.pxfuel.com/wallpapers/181/8/desktop-wallpaper-gintoki-sakata-gintama-funny.jpg" alt="driver-image" />
+          <img className={styles.img} src="https://eclatsuperior.com/wp-content/uploads/2021/04/man3.jpg" alt="driver" />
           <strong className={styles.label}>DRIVER</strong>
         </section>
         <section className={highLightCard("2")?styles[`highlight-card`]:styles.card} onClick={()=>setIsActive("2")}>
-          <img className={styles.img} src="https://e0.pxfuel.com/wallpapers/181/8/desktop-wallpaper-gintoki-sakata-gintama-funny.jpg" alt="driver-image" />
+          <img className={styles.img} src="https://cdni.autocarindia.com/ExtraImages/20210713115737_Buying_Used_Swift_1.jpg" alt="cab" />
           <strong className={styles.label}>CAB</strong>
         </section>
       </main>

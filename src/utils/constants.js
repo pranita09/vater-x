@@ -1,6 +1,8 @@
 export const actionTypes = {
-  GET_ALL_DRIVERS: "GET_ALL_DRIVERS",
-  SEARCH_DRIVERS: "SEARCH_DRIVER",
+  GET_ALL_DRIVERS:"GET_ALL_DRIVERS",
+  SEARCH_DRIVERS:"SEARCH_DRIVER",
+  GET_ALL_CABS:"GET_ALL_CABS",
+  SEARCH_CABS:"SEARCH_CABS",
 };
 
 export const modalContainerStyles = {
@@ -13,4 +15,4 @@ export const modalContainerStyles = {
   border: "1px solid gray",
   boxShadow: 24,
   p: 4,
-};
+}

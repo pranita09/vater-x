@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { dataReducer, initialState } from "../reducers/dataReducer";
 import { actionTypes } from "../utils/constants";
 
-import { addDriver, getDriverslistfromAPI, getCabList, deleteCab, deleteDriver, editDriver, editCab, addCab, assignCab } from "../services";
+import { addDriver, getDriverslistfromAPI, getCabList, deleteCab, deleteDriver, editDriver, editCab, addCab, assignCab, removeCab } from "../services";
 import { toast } from "react-hot-toast";
 
 
@@ -150,11 +150,26 @@ export const DataProvider = ({ children }) => {
   const assignedCab = async(driverId,cabId) => {
     console.log(driverId,cabId)
     try {
-      const response= await assignCab(driverId);
+      const response= await assignCab(driverId,{assigned_cab:cabId});
       if(response.status===200)
       {
         dispatch({type:GET_ALL_CABS,payload:response.data.data})
         getDrivers()
+      }
+    }
+    catch(error)
+    {
+      console.log(error);
+    }
+  }
+  const removedCab = async(driverId,cabId) => {
+    console.log(driverId,cabId)
+    try {
+      const response= await removeCab(driverId,cabId);
+      if(response.status===200)
+      {
+        dispatch({type:GET_ALL_CABS,payload:response.data.data})
+        getAllCabs()
       }
     }
     catch(error)
@@ -177,7 +192,7 @@ export const DataProvider = ({ children }) => {
 
   return (
 
-    <DataContext.Provider value={{ state, dispatch, loginHandler, guestLoginHandler, getDrivers, searchedDrivers, getAllCabs, searchedCabs, addNewDriver,deleteSelectedCab,deleteSelectedDriver,editSelectedDriver,editSelectedCab,assignedCab,addNewCab }}>
+    <DataContext.Provider value={{ state, dispatch, loginHandler, guestLoginHandler, getDrivers, searchedDrivers, getAllCabs, searchedCabs, addNewDriver,deleteSelectedCab,deleteSelectedDriver,editSelectedDriver,editSelectedCab,assignedCab,addNewCab,removedCab }}>
       {children}
     </DataContext.Provider>
   );

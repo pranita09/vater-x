@@ -5,13 +5,24 @@ import { Menu, Modal } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import {useData} from "../../contexts/DataContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CabModal } from "../Modals/CabModal/CabModal";
 
+import { handleCopyToClipboard } from "../../utils/utilFunctions";
+import { getIndividualDriver } from "../../services";
+import { MdOutlineCancel } from "react-icons/md";
+import { async } from "q";
+
 export const CabCard = ({cab}) => {
-  const {state,deleteSelectedCab,assignedCab}=useData();
+  const {state,deleteSelectedCab,assignedCab,removedCab}=useData();
   const [showCabModal, setShowCabModal] = useState(false);
-  const [selectedDriver,setSelectedDriver] = useState(null)
+
+  const [cabAssignedDriver,setCabAssignedDriver] = useState(cab?.assigned_driver)
+  
+  const {drivers}=state;
+
+  const [driverList,setDriverList] = useState(drivers)
+  
   const [anchorEl, setAnchorEl] = useState(null);
   const open = anchorEl
   const handleClick = (event) => {
@@ -26,11 +37,19 @@ export const CabCard = ({cab}) => {
   }
  
   const handleChange= (e) => {
+    console.log(e.target.value,"value")
+    setCabAssignedDriver(e.target.value)
     assignedCab(e.target.value,cab.id)
   }
 
+  const removeDriver = () =>{
+    removedCab(cabAssignedDriver,cab?.id)
+    setCabAssignedDriver(null)
+  }
+  
+  useEffect(()=>{getIndividualDriver()})
 
-  const {drivers}=state;
+  console.log(cabAssignedDriver ,'state')
 
   return (
     <div className={styles[`cab-card-container`]}>
@@ -71,12 +90,30 @@ export const CabCard = ({cab}) => {
           </>
         </Modal>
       )}
-      <select className={styles.dropdown} value={selectedDriver} onChange={(e)=>handleChange(e)}>
-        <option disabled selected>Assign Driver</option>
-        {drivers.map(({name,id})=>(
-          <option value={id}>{name}</option>
-        ))}
-      </select>
+      
+      {cabAssignedDriver && <div className="">
+        <img
+            className={styles.img}
+            alt="img"
+            src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png"
+            width={68}
+            height={68}
+          />
+          <strong className={styles.name}>{driverList.find(({id})=>id===cabAssignedDriver)?.name}</strong>
+          <small
+            className={styles.id}
+            onClick={() => handleCopyToClipboard(cabAssignedDriver)}
+          >
+            XXYY{cabAssignedDriver?.slice(-5)}
+          </small>
+          <div onClick={()=>removeDriver()}>
+            <MdOutlineCancel />
+          </div>
+      </div>}
+      {!cabAssignedDriver && <select className={styles.dropdown} value={ cabAssignedDriver} onChange={(e)=>handleChange(e)}>
+        <option selected>Assign Driver</option>
+        {driverList.map(({name,id})=><option value={id}>{name}</option>)}
+      </select>}
     </div>
   );
 };

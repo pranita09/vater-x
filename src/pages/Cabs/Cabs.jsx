@@ -6,7 +6,7 @@ import {CiSearch} from "react-icons/ci"
 
 import { actionTypes } from "../../utils/constants";
 import {useData} from "../../contexts/DataContext";
-import { DriverCard } from "../../components/DriverCard/DriverCard";
+import { CabCard } from "../../components/CabCard/CabCard";
 import {Header} from "../../components/Header/Header";
 
 export const Cabs = () => {
@@ -15,7 +15,7 @@ export const Cabs = () => {
 
   const { SEARCH_CABS } = actionTypes;
 
-  useEffect(()=>{getAllCabs()},[]);
+  useEffect(()=>{getAllCabs();getDrivers()},[]);
   return (
     <div className={headerStyles[`driver-container`]}>
       <Header />
@@ -26,7 +26,13 @@ export const Cabs = () => {
         </span>
         <button className={headerStyles.button}>ADD CAB</button>
       </header>
-      <h1>Cabs Page</h1>
+      <ul className={styles[`list-container`]}>
+      {searchedCabs()?.map(item=>(
+        <li key={item.id} className={styles[`list-item-container`]}>
+          <CabCard cab={item} />
+        </li>
+      ))}
+      </ul>
     </div>
   );
 };

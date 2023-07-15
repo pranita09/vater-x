@@ -2,8 +2,8 @@
     border-radius: 0.3125rem;
     border: 1px solid #E3E3E3;
     background: #FFF;
-    width: 15vw;
-    padding: 1rem;
+    width: fit-content;
+    padding: 1rem 1.5rem;
 }
 .header {
     display: grid;
@@ -22,6 +22,7 @@
     font-weight: 400;
     line-height: normal;
     place-self: end start;
+    padding-right: 3rem;
 }
 .id {
     color: #6E8796;

@@ -2,7 +2,7 @@ import styles from "./driverCard.module.css";
 import { DriverDetailsModal, DriverModal } from "..";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { BsTelephone } from "react-icons/bs";
-import { MdOutlineCable, MdOutlineEmail } from "react-icons/md";
+import { MdOutlineCancel, MdOutlineEmail } from "react-icons/md";
 
 import { handleCopyToClipboard } from "../../utils/utilFunctions";
 import { useState } from "react";
@@ -14,14 +14,15 @@ import { useData } from "../../contexts/DataContext";
 export const DriverCard = ({ driver }) => {
   const [showDriverDetails, setShowDriverDetails] = useState(false);
   const [showDriverModal, setShowDriverModal] = useState(false);
-  const [cabAssignedDriver,setCabAssignedDriver] = useState(driver?.assigned_cab)
+
   
-  
+  const [driverAssignedCab,setDriverAssignedCab] = useState(driver?.assigned_cab)
   const {deleteSelectedDriver,state,removedCab,assignedCab} = useData()
+  const {cabs} = state
   const [anchorEl, setAnchorEl] = useState(null);
   const open = anchorEl
-  const {drivers}=state;
-  const [driverList,setDriverList] = useState(drivers)
+
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -35,14 +36,15 @@ export const DriverCard = ({ driver }) => {
 
   }
   const handleChange= (e) => {
-    console.log(e.target.value,"value")
-    setCabAssignedDriver(e.target.value)
-    assignedCab(e.target.value,driver.assigned_cab)
+    setDriverAssignedCab(e.target.value)
+    assignedCab(driver.id,e.target.value)
   }
   const removeDriver = () =>{
-    removedCab(cabAssignedDriver,driver.assigned_cab)
-    setCabAssignedDriver(null)
+    removedCab(driver?.id, driverAssignedCab)
+    setDriverAssignedCab(null)
   }
+
+
   return (
     <div className={styles[`driver-card-container`]}>
       <header className={styles.header}>
@@ -122,30 +124,22 @@ export const DriverCard = ({ driver }) => {
           </>
         </Modal>
       )}
-
-{cabAssignedDriver && <div className="">
-  <img
-      className={styles.img}
-      alt="img"
-      src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png"
-      width={68}
-      height={68}
-    />
-    <strong className={styles.name}>{driverList.find(({id})=>id===cabAssignedDriver)?.name}</strong>
-    <small
-      className={styles.id}
-      onClick={() => handleCopyToClipboard(cabAssignedDriver)}
-    >
-      XXYY{cabAssignedDriver?.slice(-5)}
-    </small>
-    <div onClick={()=>removeDriver()}>
-      <MdOutlineCable />
-    </div>
-</div>}
-{!cabAssignedDriver && <select className={styles.dropdown} value={ cabAssignedDriver} onChange={(e)=>handleChange(e)}>
-  <option selected>Assign Driver</option>
-  {driverList.map(({name,id})=><option value={id}>{name}</option>)}
-</select>}
+      {driverAssignedCab && <div className={styles[`driver-card`]}>
+        <img
+            className={styles[`driver-img`]}
+            alt="img"
+            src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png"
+            width={45}
+            height={45}
+          />
+          <strong className={styles.name}>{cabs.find(({id})=>id===driverAssignedCab)?.name}</strong>
+            <MdOutlineCancel className={styles[`driver-close-icon`]} onClick={()=>removeDriver()} />
+          
+      </div>} 
+      {!driverAssignedCab && <select className={styles.dropdown} value={  driverAssignedCab} onChange={(e)=>handleChange(e)}>
+        <option selected>Assign Driver</option>
+        {cabs.map(({name,id})=><option value={id}>{name}</option>)}
+      </select>}
     </div>
 
     

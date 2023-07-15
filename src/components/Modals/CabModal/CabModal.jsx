@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import styles from "./cabModal.module.css";
 import { BsCamera } from "react-icons/bs";
 import { useData } from "../../../contexts/DataContext";
+import { modalContainerStyles } from "../../../utils/constants";
 
 export const CabModal = ({ isEdit,cab,setShowCabModal }) => {
   const { addNewCab,editSelectedCab } = useData();
   const [profilePhoto, setProfilePhoto] = useState("");
-
-  
   const [cabDetails,setCabDetails] = useState(
     {
       name:"",
@@ -42,7 +41,7 @@ export const CabModal = ({ isEdit,cab,setShowCabModal }) => {
   useEffect(()=>{isEdit && setCabDetails(cab)},[])
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={modalContainerStyles}>
       <p className={styles.header}>{isEdit ? "Edit" : "Add"} Cab Details</p>
       <form className={styles.formInputs} onSubmit={formSubmitHandler}>
         <input type="text" placeholder="Enter name" required value={cabDetails.name} name="name" onChange={formInputHandler} />

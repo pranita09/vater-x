@@ -16,7 +16,7 @@ export const Cabs = () => {
 
   const [showCabModal,setShowCabModal] = useState(false)
 
-  const {drivers, cabs, searchCabs}=state;
+  const {searchCabs}=state;
 
   const { SEARCH_CABS } = actionTypes;
 

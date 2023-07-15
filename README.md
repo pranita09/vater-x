@@ -49,9 +49,15 @@ A Cab Management website where users can choose a cab and driver for themselves.
 5. React Icons
 6. React Hot Toast
 
+
 ### Backend
 
-1. Hosted backend for this project - https://cors-sage.vercel.app
+1. NEXT js serverless components for hosting the microservices 
+2. supabase for hosting backend data
+3. supabase storage for hosting media assets
+
+   Repo for backend - https://github.com/assudani66/cors
+
 
 ## Snapshots
 

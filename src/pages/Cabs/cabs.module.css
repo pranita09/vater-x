@@ -1,0 +1,15 @@
+.list-container {
+    list-style: none;
+    padding-inline-start: 0;
+    display: grid;
+    grid-template-columns: 40vw 40vw;
+    gap: 2rem;
+    justify-content: center;
+}
+.list-item-container {
+    width: fit-content;
+    justify-self: start;
+}
+.list-item-container:nth-child(odd) {
+    justify-self: end;
+}

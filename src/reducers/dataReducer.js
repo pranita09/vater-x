@@ -4,9 +4,10 @@ export const initialState = {
   drivers: [],
   cabs: [],
   searchDrivers:"",
+  searchCabs:"",
 };
 
-const { ADD_DRIVER,GET_ALL_DRIVERS, SEARCH_DRIVERS } = actionTypes;
+const { ADD_DRIVER,GET_ALL_DRIVERS, SEARCH_DRIVERS, GET_ALL_CABS, SEARCH_CABS } = actionTypes;
 
 export const dataReducer = (state, { type, payload }) => {
   switch (type) {
@@ -15,7 +16,13 @@ export const dataReducer = (state, { type, payload }) => {
       return {...state,drivers:payload};
 
     case SEARCH_DRIVERS:
-      return {...state, searchDrivers:payload}  
+      return {...state, searchDrivers:payload};
+    
+    case GET_ALL_CABS:
+      return {...state,cabs:payload}
+      
+    case SEARCH_CABS:
+      return {...state,searchCabs:payload};
 
     default:
       return state;

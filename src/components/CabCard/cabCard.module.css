@@ -1,0 +1,46 @@
+.cab-card-container {
+    padding: 1rem;
+    text-align: center;
+    width: 25rem;
+    border-radius: 0.3125rem;
+    border: 1px solid #E3E3E3;
+    background: #FFF;
+}
+.img {
+    border-radius: 0.75rem;
+    object-fit: cover;
+    height: 100%;
+    align-self: stretch;
+}
+.header {
+    display: flex;
+    align-content: start;
+    height: 15vh;
+}
+.cab-information-header {
+    display: grid;
+    row-gap: 0.4rem;
+    place-content: start;
+    flex-grow: 1;
+    margin: 0 1rem;
+    text-align: left;
+}
+.cab-information-header strong {
+    color: #032551;
+    font-style: normal;
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: normal;
+}
+.cab-information-header span {
+    display: flex;
+    align-items: center;
+}
+.dropdown {
+    color: #494949;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    margin: 1rem 0;
+    padding: 0.5rem 3rem;
+}

@@ -115,6 +115,7 @@ export const DataProvider = ({ children }) => {
     navigate("/home");
     toast.success("Logged In as Guest, Welcome!");
   }
+
   const deleteSelectedCab= async (driverId) =>
   {
     try {
@@ -176,7 +177,7 @@ export const DataProvider = ({ children }) => {
 
   return (
 
-    <DataContext.Provider value={{ state, dispatch, loginHandler, guestLoginHandler, getDrivers, searchedDrivers, getAllCabs, searchedCabs, addNewDriver,deleteSelectedCab,deleteSelectedDriver,editSelectedDriver,editSelectedCab }}>
+    <DataContext.Provider value={{ state, dispatch, loginHandler, guestLoginHandler, getDrivers, searchedDrivers, getAllCabs, searchedCabs, addNewDriver,deleteSelectedCab,deleteSelectedDriver,editSelectedDriver,editSelectedCab,assignedCab,addNewCab }}>
       {children}
     </DataContext.Provider>
   );

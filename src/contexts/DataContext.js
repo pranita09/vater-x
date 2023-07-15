@@ -11,8 +11,12 @@ export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
 
-  const { GET_ALL_DRIVERS, GET_ALL_CABS, SEARCH_CABS } = actionTypes;
+  const { GET_ALL_DRIVERS, GET_ALL_CABS, AUTHENTICATION } = actionTypes;
 
+  const loginHandler=()=>
+  {
+    
+  }
 
   const getDrivers = async () => {
     try {

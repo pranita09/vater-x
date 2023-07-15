@@ -3,6 +3,8 @@ export const actionTypes = {
   SEARCH_DRIVERS:"SEARCH_DRIVER",
   GET_ALL_CABS:"GET_ALL_CABS",
   SEARCH_CABS:"SEARCH_CABS",
+  AUTHENTICATION:"AUTHENTICATION",
+  LOGIN_FIELDS:"LOGIN_FIELDS",
 };
 
 export const modalContainerStyles = {

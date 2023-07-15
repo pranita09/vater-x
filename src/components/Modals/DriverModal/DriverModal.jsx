@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./driverModal.module.css";
 import { BsCamera } from "react-icons/bs";
 import { modalContainerStyles } from "../../../utils/constants";
 import { useData } from "../../../contexts/DataContext";
 
-export const DriverModal = ({ isEdit, setShowDriverModal }) => {
-  const { addNewDriver } = useData();
+export const DriverModal = ({ isEdit, setShowDriverModal,driver }) => {
+  const { addNewDriver,editSelectedDriver } = useData();
   const [driverDetails, setDriverDetails] = useState({
     name: "",
     email: "",
     phone_number: "",
     rating: "",
   });
+
+  useEffect(()=>{setDriverDetails(driver)},[])
+
   const [profilePhoto, setProfilePhoto] = useState("");
 
   const formInputHandler = (e) => {
@@ -20,8 +23,13 @@ export const DriverModal = ({ isEdit, setShowDriverModal }) => {
   };
 
   const formSubmitHandler = (e) => {
+
     e.preventDefault();
-    addNewDriver({ ...driverDetails, profile_photo_url: profilePhoto });
+    if(isEdit){
+      editSelectedDriver(driver?.id,driverDetails)
+    }else{
+      addNewDriver({ ...driverDetails, profile_photo_url: profilePhoto });
+    }
     setDriverDetails({
       name: "",
       email: "",

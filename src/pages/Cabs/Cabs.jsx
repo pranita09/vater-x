@@ -2,7 +2,6 @@ import styles from "./cabs.module.css";
 import headerStyles from "../Drivers/drivers.module.css";
 
 import {CiSearch} from "react-icons/ci"
-
 import { actionTypes } from "../../utils/constants";
 import {useData} from "../../contexts/DataContext";
 import { CabCard } from "../../components/CabCard/CabCard";

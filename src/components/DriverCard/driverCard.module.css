@@ -32,6 +32,7 @@
     font-weight: 500;
     line-height: normal;
     place-self: start;
+    cursor: pointer;
 }
 .icon {
     grid-row: 1 / span 2;

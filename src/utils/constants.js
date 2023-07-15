@@ -6,6 +6,7 @@ export const actionTypes = {
   AUTHENTICATION:"AUTHENTICATION",
   LOGIN_FIELDS:"LOGIN_FIELDS",
   GUEST_LOGIN:"GUEST_LOGIN",
+  TOGGLE_LOADER:"TOGGLE_LOADER",
 };
 
 export const modalContainerStyles = {
@@ -19,3 +20,7 @@ export const modalContainerStyles = {
   boxShadow: 24,
   p: 4,
 }
+
+export const defaultDriverAvatar="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png";
+
+export const defaultCabImage="https://www.shutterstock.com/shutterstock/photos/1748114237/display_1500/stock-photo-bodrum-turkey-suzuki-swift-parked-in-city-park-near-atms-1748114237.jpg";

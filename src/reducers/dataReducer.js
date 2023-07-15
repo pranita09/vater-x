@@ -7,10 +7,11 @@ export const initialState = {
   searchCabs:"",
   isLoggedIn:false,
   login:{name:"",password:""},
+  isLoading:false,
 };
 
 
-const { GET_ALL_DRIVERS, SEARCH_DRIVERS, GET_ALL_CABS, SEARCH_CABS, AUTHENTICATION, LOGIN_FIELDS, GUEST_LOGIN } = actionTypes;
+const { GET_ALL_DRIVERS, SEARCH_DRIVERS, GET_ALL_CABS, SEARCH_CABS, AUTHENTICATION, LOGIN_FIELDS, GUEST_LOGIN, TOGGLE_LOADER } = actionTypes;
 
 
 export const dataReducer = (state, { type, payload }) => {
@@ -36,6 +37,9 @@ export const dataReducer = (state, { type, payload }) => {
 
     case GUEST_LOGIN:  
       return {...state,login:{...state.login,name:"Admin"},isLoggedIn:true};
+     
+    case TOGGLE_LOADER:
+      return {...state,isLoading:payload};  
 
     default:
       return state;

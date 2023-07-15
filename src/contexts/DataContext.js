@@ -14,13 +14,15 @@ export const DataProvider = ({ children }) => {
   const navigate=useNavigate();
 
 
-  const { GET_ALL_DRIVERS, GET_ALL_CABS, AUTHENTICATION, GUEST_LOGIN } = actionTypes;
+  const { GET_ALL_DRIVERS, GET_ALL_CABS, AUTHENTICATION, GUEST_LOGIN, TOGGLE_LOADER } = actionTypes;
 
   const getDrivers = async () => {
+    dispatch({type:TOGGLE_LOADER,payload:true});
     try {
       const response = await getDriverslistfromAPI();
       if (response.status === 200) {
         dispatch({ type: GET_ALL_DRIVERS, payload: response.data.data });
+        dispatch({type:TOGGLE_LOADER,payload:false});
       }
     } catch (error) {
       console.log(error);
@@ -28,20 +30,9 @@ export const DataProvider = ({ children }) => {
   };
 
   const addNewDriver = async (driverDetails) => {
+    dispatch({type:TOGGLE_LOADER,payload:true});
     try {
       const response = await addDriver(driverDetails);
-      if (response.status === 200) {
-        toast.success("New driver added successfully!");
-        getAllCabs()
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const addNewCab = async (cabDetails) => {
-    try {
-      const response = await addCab(cabDetails);
       if (response.status === 200) {
         toast.success("New driver added successfully!");
         getDrivers()
@@ -51,7 +42,21 @@ export const DataProvider = ({ children }) => {
     }
   };
 
+  const addNewCab = async (cabDetails) => {
+    dispatch({type:TOGGLE_LOADER,payload:true});
+    try {
+      const response = await addCab(cabDetails);
+      if (response.status === 200) {
+        toast.success("New Cab added successfully!");
+        getAllCabs()
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const editSelectedDriver = async (driverId,driverDetails) => {
+    dispatch({type:TOGGLE_LOADER,payload:true});
     try {
       const response = await editDriver(driverId,driverDetails);
       if (response.status === 200) {
@@ -64,10 +69,11 @@ export const DataProvider = ({ children }) => {
   };
 
   const editSelectedCab = async (cabId,cabDetails) => {
+    dispatch({type:TOGGLE_LOADER,payload:true});
     try {
       const response = await editCab(cabId,cabDetails);
       if (response.status === 200) {
-        toast.success("New driver added successfully!");
+        toast.success("Cab updated!");
         getAllCabs()
       }
     } catch (error) {
@@ -78,11 +84,13 @@ export const DataProvider = ({ children }) => {
 
   const getAllCabs= async () =>
   {
+    dispatch({type:TOGGLE_LOADER,payload:true});
     try {
       const response=await getCabList();
       if(response.status===200)
       {
-        dispatch({type:GET_ALL_CABS,payload:response.data.data})
+        dispatch({type:GET_ALL_CABS,payload:response.data.data});
+        dispatch({type:TOGGLE_LOADER,payload:false});
       }
     }
     catch(error)
@@ -120,11 +128,12 @@ export const DataProvider = ({ children }) => {
 
   const deleteSelectedCab= async (driverId) =>
   {
+    dispatch({type:TOGGLE_LOADER,payload:true});
     try {
       const response= await deleteCab(driverId);
       if(response.status===200)
       {
-        dispatch({type:GET_ALL_CABS,payload:response.data.data})
+        getAllCabs();
       }
     }
     catch(error)
@@ -135,11 +144,11 @@ export const DataProvider = ({ children }) => {
 
   const deleteSelectedDriver= async (driverId) =>
   {
+    dispatch({type:TOGGLE_LOADER,payload:true});
     try {
       const response= await deleteDriver(driverId);
       if(response.status===200)
       {
-        dispatch({type:GET_ALL_CABS,payload:response.data.data})
         getDrivers()
       }
     }
@@ -150,9 +159,9 @@ export const DataProvider = ({ children }) => {
   }
 
   const assignedCab = async(driverId,cabId) => {
+    dispatch({type:TOGGLE_LOADER,payload:true});
     try {
       const response= await assignCab(driverId,{assigned_cab:cabId});
-      console.log(response, "assing cab response is undefined");
         getDrivers()
         getAllCabs()
     }
@@ -162,9 +171,9 @@ export const DataProvider = ({ children }) => {
     }
   }
   const removedCab = async(driverId,cabId) => {
+    dispatch({type:TOGGLE_LOADER,payload:true});
     try {
       const response= await removeCab(driverId,cabId);
-      console.log(response,"remove cab response is works");
         getAllCabs()
         getDrivers()
     }

@@ -36,7 +36,7 @@ export const dataReducer = (state, { type, payload }) => {
 
     case GUEST_LOGIN:  
       return {...state,login:{...state.login,name:"Admin"},isLoggedIn:true};
-      
+
     default:
       return state;
   }

@@ -5,6 +5,7 @@ export const actionTypes = {
   SEARCH_CABS:"SEARCH_CABS",
   AUTHENTICATION:"AUTHENTICATION",
   LOGIN_FIELDS:"LOGIN_FIELDS",
+  GUEST_LOGIN:"GUEST_LOGIN",
 };
 
 export const modalContainerStyles = {

@@ -1,6 +1,5 @@
 import styles from "./cabs.module.css";
 import headerStyles from "../Drivers/drivers.module.css";
-import { useEffect } from "react";
 
 import {CiSearch} from "react-icons/ci"
 
@@ -15,7 +14,6 @@ export const Cabs = () => {
 
   const { SEARCH_CABS } = actionTypes;
 
-  useEffect(()=>{getAllCabs();getDrivers()},[]);
   return (
     <div className={headerStyles[`driver-container`]}>
       <Header />

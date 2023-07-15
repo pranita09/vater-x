@@ -1,0 +1,62 @@
+.container {
+  width: 500px;
+  height: 200px;
+  flex-shrink: 0;
+  background: #fff;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-shrink: 0;
+  gap: 1rem;
+  border: 1px solid gray;
+  border-radius: 8px;
+  color: #032551;
+}
+
+.imageContainer {
+  padding: 1.5rem 1rem;
+  width: 40%;
+  height: 100%;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.driverInfo {
+  padding: 1rem;
+  width: 60%;
+}
+.driverHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.driverHeader h2 {
+  padding: 0.5rem 0;
+}
+
+.id {
+  padding: 0.5rem 0;
+}
+
+.driverContact {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+  padding: 0.5rem 0 0.2rem 0;
+}
+
+.cancelIcon {
+  font-size: 1.5rem;
+  margin: 0.5rem;
+  margin-left: auto;
+}
+.cancelIcon:hover {
+  scale: 1.02;
+  cursor: pointer;
+}

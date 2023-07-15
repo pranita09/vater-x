@@ -1,7 +1,8 @@
 .cab-card-container {
     padding: 1rem;
     text-align: center;
-    width: 25rem;
+    width: fit-content;
+    height: fit-content;
     border-radius: 0.3125rem;
     border: 1px solid #E3E3E3;
     background: #FFF;
@@ -10,12 +11,13 @@
     border-radius: 0.75rem;
     object-fit: cover;
     height: 100%;
-    align-self: stretch;
+    align-self: center;
 }
 .header {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-content: start;
-    height: 15vh;
+    height: fit-content;
 }
 .cab-information-header {
     display: grid;
@@ -41,11 +43,37 @@
     font-size: 1rem;
     font-style: normal;
     font-weight: 600;
-    margin: 1rem 0;
-    padding: 0.5rem 3rem;
+    padding: 0 3rem;
+    box-sizing: border-box;
+    width: 14.063rem;
+    height: 4rem;
 }
 .icon {
     display: flex;
     align-items: start;
     align-self: start;
+}
+.driver-card {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.5rem;
+    width: 14.063rem;
+    height: 4rem;
+    background-color: #E0FFFF;
+    border: 1px solid #00BCBC;
+    border-radius: 0.3rem;
+}
+.driver-img {
+    border-radius: 0.5rem;
+}
+.name {
+    color: #032551;
+    flex-grow: 1;
+    padding-left: 0.5rem;
+}
+.driver-close-icon {
+    color: #00BCBC;
+    font-size: 1.5rem;
+    align-self: center;
+    cursor: pointer;
 }

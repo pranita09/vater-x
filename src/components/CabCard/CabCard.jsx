@@ -59,6 +59,24 @@ export const CabCard = ({cab}) => {
         <strong>{cab?.name}</strong>
         <small>{cab?.model_number}</small>
         <span><BiSolidColor style={{color:cab?.color}}/> {cab?.color}</span>
+        {cabAssignedDriver && <div className={styles[`driver-card`]}>
+        <img
+            className={styles[`driver-img`]}
+            alt="img"
+            src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png"
+            width={45}
+            height={45}
+          />
+          <strong className={styles.name}>{driverList.find(({id})=>id===cabAssignedDriver)?.name}</strong>
+          
+          
+            <MdOutlineCancel className={styles[`driver-close-icon`]} onClick={()=>removeDriver()} />
+          
+      </div>}
+      {!cabAssignedDriver && <select className={styles.dropdown} value={ cabAssignedDriver} onChange={(e)=>handleChange(e)}>
+        <option selected>Assign Driver</option>
+        {driverList.map(({name,id})=><option value={id}>{name}</option>)}
+      </select>}
         </main>
         <Button
         id="more-option"
@@ -91,7 +109,7 @@ export const CabCard = ({cab}) => {
         </Modal>
       )}
       
-      {cabAssignedDriver && <div className="">
+      {/* {cabAssignedDriver && <div className="">
         <img
             className={styles[`driver-img`]}
             alt="img"
@@ -113,7 +131,7 @@ export const CabCard = ({cab}) => {
       {!cabAssignedDriver && <select className={styles.dropdown} value={ cabAssignedDriver} onChange={(e)=>handleChange(e)}>
         <option selected>Assign Driver</option>
         {driverList.map(({name,id})=><option value={id}>{name}</option>)}
-      </select>}
+      </select>} */}
     </div>
   );
 };

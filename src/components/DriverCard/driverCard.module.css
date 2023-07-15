@@ -3,13 +3,13 @@
     border: 1px solid #E3E3E3;
     background: #FFF;
     width: 20rem;
-    padding: 1rem 1.5rem;
     height: 18rem;
     display: grid;
+    justify-content: center;
 }
 .header {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 7rem auto;
     gap: 0 1rem;
 }
 .img {
@@ -37,11 +37,15 @@
     grid-row: 1 / span 2;
     grid-column: 3/ span 1;
     place-self: start center;
-   
+    display: flex !important;
+    justify-content: end !important;
+    font-size: 1.2rem !important;
+    margin-top: 0.75rem !important;
 }
 .icon:hover{
     cursor: pointer;
     color:#032551;
+    background-color: white !important;
 }
 .section-container {
     margin: 0.7rem 0;

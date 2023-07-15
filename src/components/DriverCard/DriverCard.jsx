@@ -1,15 +1,34 @@
 import styles from "./driverCard.module.css";
-import { DriverDetailsModal } from "..";
+import { DriverDetailsModal, DriverModal } from "..";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { BsTelephone } from "react-icons/bs";
 import { MdOutlineEmail } from "react-icons/md";
 
 import { handleCopyToClipboard } from "../../utils/utilFunctions";
 import { useState } from "react";
-import { Modal } from "@mui/material";
+import { Menu, Modal } from "@mui/material";
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import { useData } from "../../contexts/DataContext";
 
 export const DriverCard = ({ driver }) => {
   const [showDriverDetails, setShowDriverDetails] = useState(false);
+  const [showDriverModal, setShowDriverModal] = useState(false);
+  const {deleteSelectedDriver} = useData()
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = anchorEl
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleEditModal = () => {
+    setAnchorEl(null)
+    setShowDriverModal(!showDriverModal)
+
+  }
+
   return (
     <div className={styles[`driver-card-container`]}>
       <header className={styles.header}>
@@ -27,7 +46,36 @@ export const DriverCard = ({ driver }) => {
         >
           XXYY{driver?.id.slice(-5)}
         </small>
-        <HiDotsHorizontal className={styles.icon} />
+      <Button
+        id="more-option"
+        className={styles.icon}
+        aria-controls={open ? 'more-options' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        <HiDotsHorizontal />
+      </Button>
+      <Menu
+        id="more-options"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={()=>handleEditModal()}>Edit</MenuItem>
+        <MenuItem onClick={()=>deleteSelectedDriver(driver?.id)}>Delete</MenuItem>
+      </Menu>
+
+      {showDriverModal && (
+        <Modal open={showDriverModal} onClose={() => setShowDriverModal(false)}>
+          <>
+            <DriverModal isEdit={true} driver={driver} setShowDriverModal={setShowDriverModal} />
+          </>
+        </Modal>
+      )}
       </header>
 
       <main className={styles[`section-container`]}>

@@ -1,9 +1,8 @@
-import { useData } from "../contexts/DataContext";
 import { Navigate } from "react-router-dom";
 
 export const RequiresAuth=({children})=>
 {
-    const {state:{isLoggedIn}}=useData();
+    const isLoggedIn=localStorage.getItem("isLoggedIn")
     return isLoggedIn ? (
         children
     ) : (

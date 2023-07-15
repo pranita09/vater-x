@@ -97,6 +97,7 @@ export const DataProvider = ({ children }) => {
     if(name==="Admin" && password==="123")
     {
       dispatch({type:AUTHENTICATION,payload:true});
+      localStorage.setItem("isLoggedIn",true);
       getDrivers();
       getAllCabs();
       navigate("/home");
@@ -110,6 +111,7 @@ export const DataProvider = ({ children }) => {
   const guestLoginHandler=()=>
   {
     dispatch({type:GUEST_LOGIN});
+    localStorage.setItem("isLoggedIn",true);
     getDrivers();
     getAllCabs();
     navigate("/home");

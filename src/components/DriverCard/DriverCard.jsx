@@ -5,6 +5,7 @@ import { BsTelephone } from "react-icons/bs";
 import { MdOutlineCancel, MdOutlineEmail } from "react-icons/md";
 
 import { handleCopyToClipboard } from "../../utils/utilFunctions";
+import {defaultAvatar,defaultCab} from "../../utils/utilFunctions";
 import { useState } from "react";
 import { Menu, Modal } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
@@ -44,14 +45,13 @@ export const DriverCard = ({ driver }) => {
     setDriverAssignedCab(null)
   }
 
-
   return (
     <div className={styles[`driver-card-container`]}>
       <header className={styles.header}>
         <img
           className={styles.img}
           alt="img"
-          src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png"
+          src={defaultAvatar(driver?.profile_photo_url)}
           width={68}
           height={68}
         />
@@ -124,7 +124,7 @@ export const DriverCard = ({ driver }) => {
         <img
             className={styles[`driver-img`]}
             alt="img"
-            src="https://www.shutterstock.com/shutterstock/photos/1748114237/display_1500/stock-photo-bodrum-turkey-suzuki-swift-parked-in-city-park-near-atms-1748114237.jpg"
+            src={defaultCab(cabs.find(({id})=>id===driverAssignedCab)?.car_photourl)}
             width={45}
             height={45}
           />

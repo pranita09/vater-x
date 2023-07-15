@@ -3,11 +3,13 @@ import { MdOutlineCancel, MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
 import { modalContainerStyles } from "../../../utils/constants";
 
+import {defaultAvatar,handleCopyToClipboard} from "../../../utils/utilFunctions";
+
 export const DriverDetailsModal = ({ driver, setShowDriverDetails, setAnchorEl }) => {
   return (
     <div className={styles.container} style={modalContainerStyles}>
       <div className={styles.imageContainer}>
-        <img src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png" alt={driver?.name} />
+        <img src={defaultAvatar(driver?.profile_photo_url)} alt={driver?.name} />
       </div>
       <div className={styles.driverInfo}>
         <div className={styles.driverHeader}>
@@ -19,7 +21,7 @@ export const DriverDetailsModal = ({ driver, setShowDriverDetails, setAnchorEl }
             <MdOutlineCancel />
           </div>
         </div>
-        <span className={styles.id}>XXYY{driver?.id.slice(-5)}</span>
+        <span className={styles.id} onClick={() => handleCopyToClipboard(driver?.id)}>XXYY{driver?.id.slice(-5)}</span>
         <div className={styles.driverContact}>
           <BsTelephone />
           <span>{driver?.phone_number}</span>

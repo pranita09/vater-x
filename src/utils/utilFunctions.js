@@ -1,5 +1,7 @@
 import { toast } from "react-hot-toast";
 
+import {defaultDriverAvatar,defaultCabImage} from "./constants";
+
 export const handleCopyToClipboard = (text) => {
   const textField = document.createElement("textarea");
   textField.innerText = text;
@@ -9,3 +11,7 @@ export const handleCopyToClipboard = (text) => {
   textField.remove();
   toast.success("Copied to clipboard!");
 };
+
+export const defaultAvatar=(image)=>image?image:defaultDriverAvatar;
+
+export const defaultCab=(image)=>image?image:defaultCabImage;

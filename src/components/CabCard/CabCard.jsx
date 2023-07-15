@@ -5,11 +5,10 @@ import { Menu, Modal } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import {useData} from "../../contexts/DataContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CabModal } from "../Modals/CabModal/CabModal";
+import {defaultAvatar,defaultCab} from "../../utils/utilFunctions";
 
-import { handleCopyToClipboard } from "../../utils/utilFunctions";
-import { getIndividualDriver } from "../../services";
 import { MdOutlineCancel } from "react-icons/md";
 
 export const CabCard = ({cab}) => {
@@ -19,8 +18,6 @@ export const CabCard = ({cab}) => {
   const [cabAssignedDriver,setCabAssignedDriver] = useState(cab?.assigned_driver)
   
   const {drivers}=state;
-
-  // const [driverList,setDriverList] = useState(drivers)
   
   const [anchorEl, setAnchorEl] = useState(null);
   const open = anchorEl
@@ -44,13 +41,11 @@ export const CabCard = ({cab}) => {
     removedCab(cabAssignedDriver,cab?.id)
     setCabAssignedDriver(null)
   }
-  
-  // useEffect(()=>{getIndividualDriver()})
 
   return (
     <div className={styles[`cab-card-container`]}>
       <header className={styles.header}>
-        <img className={styles.img} alt="car image" src="https://www.shutterstock.com/shutterstock/photos/1748114237/display_1500/stock-photo-bodrum-turkey-suzuki-swift-parked-in-city-park-near-atms-1748114237.jpg" width={160} height={160} />
+        <img className={styles.img} alt="car" src={defaultCab(cab?.car_photourl)} width={160} height={160} />
         <main className={styles[`cab-information-header`]}>
         <strong>{cab?.name}</strong>
         <small>{cab?.model_number}</small>
@@ -59,7 +54,7 @@ export const CabCard = ({cab}) => {
         <img
             className={styles[`driver-img`]}
             alt="img"
-            src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png"
+            src={defaultAvatar(drivers.find(({id})=>id===cabAssignedDriver)?.profile_photo_url)}
             width={45}
             height={45}
           />

@@ -11,16 +11,14 @@ import { Modal } from "@mui/material";
 import { DriverModal } from "../../components";
 
 export const Drivers = () => {
-  const { state, dispatch, getDrivers, searchedDrivers } = useData();
+  const { state, dispatch, getDrivers, searchedDrivers, getAllCabs } = useData();
   const { searchDrivers } = state;
 
   const [showDriverModal, setShowDriverModal] = useState(false);
 
   const { SEARCH_DRIVERS } = actionTypes;
 
-  useEffect(() => {
-    getDrivers();
-  }, []);
+  useEffect(()=>{getAllCabs();getDrivers()},[]);
 
   return (
     <div className={styles[`driver-container`]}>

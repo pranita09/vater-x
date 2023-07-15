@@ -2,12 +2,14 @@
     border-radius: 0.3125rem;
     border: 1px solid #E3E3E3;
     background: #FFF;
-    width: fit-content;
-    padding: 1rem 1.5rem;
+    width: 20rem;
+    height: 18rem;
+    display: grid;
+    justify-content: center;
 }
 .header {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 7rem auto;
     gap: 0 1rem;
 }
 .img {
@@ -30,16 +32,21 @@
     font-weight: 500;
     line-height: normal;
     place-self: start;
+    cursor: pointer;
 }
 .icon {
     grid-row: 1 / span 2;
     grid-column: 3/ span 1;
     place-self: start center;
-   
+    display: flex !important;
+    justify-content: end !important;
+    font-size: 1.2rem !important;
+    margin-top: 0.75rem !important;
 }
 .icon:hover{
     cursor: pointer;
     color:#032551;
+    background-color: white !important;
 }
 .section-container {
     margin: 0.7rem 0;
@@ -52,7 +59,7 @@
     margin-left: 0.8rem;
 }
 .iconTwo {
-    color: #E3E3E3;
+    color: #bab7b7;
     font-size: 1.2rem;
 }
 .button {
@@ -68,4 +75,39 @@
     cursor: pointer;
     color: white;
     background-color: #00BCBC;
+}
+.dropdown {
+    color: #000;
+    font-weight: 600;
+    line-height: normal;
+    padding: 0.5rem 3rem;
+    border-radius: 0.5rem;
+    height: 4rem;
+    place-self: center;
+}
+.driver-card {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.5rem;
+    width: 100%;
+    height: 4rem;
+    background-color: #E0FFFF;
+    border: 1px solid #00BCBC;
+    border-radius: 0.3rem;
+    place-self: center;
+}
+.driver-img {
+    border-radius: 0.5rem;
+}
+.cab-name {
+    color: #032551;
+    flex-grow: 1;
+    padding-left: 0.5rem;
+    align-self: center;
+}
+.driver-close-icon {
+    color: #00BCBC;
+    font-size: 1.5rem;
+    align-self: center;
+    cursor: pointer;
 }

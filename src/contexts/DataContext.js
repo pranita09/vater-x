@@ -24,8 +24,15 @@ export const DataProvider = ({ children }) => {
       console.log(error);
     }
   }
+
+  const searchedDrivers=()=>
+  {
+    const {drivers, searchDrivers}=state;
+    return drivers.filter(({name})=>name.toLowerCase().includes(searchDrivers.toLowerCase()));
+  }
+
   return (
-    <DataContext.Provider value={{ state, dispatch, getDrivers }}>
+    <DataContext.Provider value={{ state, dispatch, getDrivers, searchedDrivers }}>
       {children}
     </DataContext.Provider>
   );

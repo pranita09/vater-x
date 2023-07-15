@@ -1,5 +1,5 @@
 import styles from "./drivers.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { CiSearch } from "react-icons/ci";
 
@@ -11,12 +11,14 @@ import { Modal } from "@mui/material";
 import { DriverModal } from "../../components";
 
 export const Drivers = () => {
-  const { state, dispatch, getDrivers, searchedDrivers } = useData();
+  const { state, dispatch, getDrivers, searchedDrivers, getAllCabs } = useData();
   const { searchDrivers } = state;
 
   const [showDriverModal, setShowDriverModal] = useState(false);
 
   const { SEARCH_DRIVERS } = actionTypes;
+
+  useEffect(()=>{getAllCabs();getDrivers()},[]);
 
   return (
     <div className={styles[`driver-container`]}>

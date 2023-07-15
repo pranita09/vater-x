@@ -15,7 +15,7 @@ export const CabModal = ({ isEdit,cab,setShowCabModal }) => {
       model_number:"",
       color:""
     }
-    )
+)
     
   const formInputHandler = (e) => {
     const { name, value } = e.target;
@@ -39,7 +39,7 @@ export const CabModal = ({ isEdit,cab,setShowCabModal }) => {
     setShowCabModal(false);
   };
 
-  useEffect(()=>setCabDetails(cab),[])
+  useEffect(()=>{isEdit && setCabDetails(cab)},[])
 
   return (
     <div className={styles.container}>
@@ -59,7 +59,7 @@ export const CabModal = ({ isEdit,cab,setShowCabModal }) => {
           <button type="submit" className={styles.submitBtn}>
             {isEdit ? "Save" : "Add"}
           </button>
-          <button className={styles.cancelBtn} >Cancel</button>
+          <button className={styles.cancelBtn} onClick={()=>setShowCabModal(false)} >Cancel</button>
         </div>
       </form>
     </div>

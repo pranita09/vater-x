@@ -2,7 +2,7 @@ import { createContext, useContext, useReducer } from "react";
 import { dataReducer, initialState } from "../reducers/dataReducer";
 import { actionTypes } from "../utils/constants";
 
-import { addDriver, getDriverslistfromAPI, getCabList, deleteCab, deleteDriver, editDriver, editCab } from "../services";
+import { addDriver, getDriverslistfromAPI, getCabList, deleteCab, deleteDriver, editDriver, editCab, addCab, assignCab } from "../services";
 import { toast } from "react-hot-toast";
 
 
@@ -12,7 +12,6 @@ export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
 
   const { GET_ALL_DRIVERS, GET_ALL_CABS } = actionTypes;
-
 
   const getDrivers = async () => {
     try {
@@ -30,12 +29,25 @@ export const DataProvider = ({ children }) => {
       const response = await addDriver(driverDetails);
       if (response.status === 200) {
         toast.success("New driver added successfully!");
+        getAllCabs()
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addNewCab = async (cabDetails) => {
+    try {
+      const response = await addCab(cabDetails);
+      if (response.status === 200) {
+        toast.success("New driver added successfully!");
         getDrivers()
       }
     } catch (error) {
       console.log(error);
     }
   };
+
   const editSelectedDriver = async (driverId,driverDetails) => {
     try {
       const response = await editDriver(driverId,driverDetails);
@@ -47,6 +59,7 @@ export const DataProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   const editSelectedCab = async (cabId,cabDetails) => {
     try {
       const response = await editCab(cabId,cabDetails);
@@ -106,6 +119,22 @@ export const DataProvider = ({ children }) => {
     }
   }
 
+  const assignedCab = async(driverId,cabId) => {
+    console.log(driverId,cabId)
+    try {
+      const response= await assignCab(driverId);
+      if(response.status===200)
+      {
+        dispatch({type:GET_ALL_CABS,payload:response.data.data})
+        getDrivers()
+      }
+    }
+    catch(error)
+    {
+      console.log(error);
+    }
+  }
+
   const searchedDrivers=()=>
   {
     const {drivers, searchDrivers}=state;
@@ -119,7 +148,7 @@ export const DataProvider = ({ children }) => {
   }
 
   return (
-    <DataContext.Provider value={{ state, dispatch, getDrivers, searchedDrivers, getAllCabs, searchedCabs, addNewDriver,deleteSelectedCab,deleteSelectedDriver,editSelectedDriver,editSelectedCab }}>
+    <DataContext.Provider value={{ state, dispatch, getDrivers, searchedDrivers, getAllCabs, searchedCabs, addNewDriver,deleteSelectedCab,deleteSelectedDriver,editSelectedDriver,editSelectedCab,addNewCab,assignedCab }}>
       {children}
     </DataContext.Provider>
   );

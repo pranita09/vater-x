@@ -6,7 +6,7 @@ export const initialState = {
   searchDrivers:"",
 };
 
-const { ADD_DRIVER,GET_ALL_DRIVERS, SEARCH_DRIVERS } = actionTypes;
+const { GET_ALL_DRIVERS, SEARCH_DRIVERS } = actionTypes;
 
 export const dataReducer = (state, { type, payload }) => {
   switch (type) {

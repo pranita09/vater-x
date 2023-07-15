@@ -3,7 +3,7 @@ import { MdOutlineCancel, MdOutlineEmail } from "react-icons/md";
 import { BsTelephone } from "react-icons/bs";
 import { modalContainerStyles } from "../../../utils/constants";
 
-export const DriverDetailsModal = ({ driver, setShowDriverDetails }) => {
+export const DriverDetailsModal = ({ driver, setShowDriverDetails, setAnchorEl }) => {
   return (
     <div className={styles.container} style={modalContainerStyles}>
       <div className={styles.imageContainer}>
@@ -14,7 +14,7 @@ export const DriverDetailsModal = ({ driver, setShowDriverDetails }) => {
           <h2>{driver?.name}</h2>
           <div
             className={styles.cancelIcon}
-            onClick={() => setShowDriverDetails(false)}
+            onClick={() => {setShowDriverDetails(false);setAnchorEl && setAnchorEl(null)}}
           >
             <MdOutlineCancel />
           </div>

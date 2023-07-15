@@ -7,7 +7,9 @@ export const initialState = {
   searchCabs:"",
 };
 
-const { ADD_DRIVER,GET_ALL_DRIVERS, SEARCH_DRIVERS, GET_ALL_CABS, SEARCH_CABS } = actionTypes;
+
+const { GET_ALL_DRIVERS, SEARCH_DRIVERS, GET_ALL_CABS, SEARCH_CABS } = actionTypes;
+
 
 export const dataReducer = (state, { type, payload }) => {
   switch (type) {

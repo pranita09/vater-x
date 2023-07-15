@@ -6,12 +6,12 @@ export const CabModal = ({ isEdit }) => {
     <div className={styles.container}>
       <p className={styles.header}>{isEdit ? "Edit" : "Add"} Cab Details</p>
       <form className={styles.formInputs}>
-        <input type="text" placeholder="Enter name" />
-        <input type="text" placeholder="Registration Number" />
-        <input type="text" placeholder="Modal Number" />
-        <input type="text" placeholder="Color of the cab" />
+        <input type="text" placeholder="Enter name" required />
+        <input type="text" placeholder="Registration Number" required />
+        <input type="text" placeholder="Modal Number" required />
+        <input type="text" placeholder="Color of the cab" required />
         <label>
-          <input type="file" accept="*/image" />
+          <input type="file" accept="*/image" required />
           <span>
             <BsCamera title="Add Cab Picture" />
           </span>

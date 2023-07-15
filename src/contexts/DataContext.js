@@ -150,14 +150,11 @@ export const DataProvider = ({ children }) => {
   }
 
   const assignedCab = async(driverId,cabId) => {
-    console.log(driverId,cabId)
     try {
       const response= await assignCab(driverId,{assigned_cab:cabId});
-      if(response.status===200)
-      {
-        dispatch({type:GET_ALL_CABS,payload:response.data.data})
+      console.log(response, "assing cab response is undefined");
         getDrivers()
-      }
+        getAllCabs()
     }
     catch(error)
     {
@@ -165,14 +162,11 @@ export const DataProvider = ({ children }) => {
     }
   }
   const removedCab = async(driverId,cabId) => {
-    console.log(driverId,cabId)
     try {
       const response= await removeCab(driverId,cabId);
-      if(response.status===200)
-      {
-        dispatch({type:GET_ALL_CABS,payload:response.data.data})
+      console.log(response,"remove cab response is works");
         getAllCabs()
-      }
+        getDrivers()
     }
     catch(error)
     {

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { dataReducer, initialState } from "../reducers/dataReducer";
 import { actionTypes } from "../utils/constants";
 
-import { addDriver, getDriverslistfromAPI, getCabList, deleteCab, deleteDriver, editDriver, editCab } from "../services";
+import { addDriver, getDriverslistfromAPI, getCabList, deleteCab, deleteDriver, editDriver, editCab, addCab, assignCab } from "../services";
 import { toast } from "react-hot-toast";
 
 
@@ -12,6 +12,7 @@ export const DataContext = createContext();
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
   const navigate=useNavigate();
+
 
   const { GET_ALL_DRIVERS, GET_ALL_CABS, AUTHENTICATION, GUEST_LOGIN } = actionTypes;
 
@@ -31,12 +32,25 @@ export const DataProvider = ({ children }) => {
       const response = await addDriver(driverDetails);
       if (response.status === 200) {
         toast.success("New driver added successfully!");
+        getAllCabs()
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const addNewCab = async (cabDetails) => {
+    try {
+      const response = await addCab(cabDetails);
+      if (response.status === 200) {
+        toast.success("New driver added successfully!");
         getDrivers()
       }
     } catch (error) {
       console.log(error);
     }
   };
+
   const editSelectedDriver = async (driverId,driverDetails) => {
     try {
       const response = await editDriver(driverId,driverDetails);
@@ -48,6 +62,7 @@ export const DataProvider = ({ children }) => {
       console.log(error);
     }
   };
+
   const editSelectedCab = async (cabId,cabDetails) => {
     try {
       const response = await editCab(cabId,cabDetails);
@@ -119,6 +134,22 @@ export const DataProvider = ({ children }) => {
   {
     try {
       const response= await deleteDriver(driverId);
+      if(response.status===200)
+      {
+        dispatch({type:GET_ALL_CABS,payload:response.data.data})
+        getDrivers()
+      }
+    }
+    catch(error)
+    {
+      console.log(error);
+    }
+  }
+
+  const assignedCab = async(driverId,cabId) => {
+    console.log(driverId,cabId)
+    try {
+      const response= await assignCab(driverId);
       if(response.status===200)
       {
         dispatch({type:GET_ALL_CABS,payload:response.data.data})

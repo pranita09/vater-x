@@ -9,8 +9,9 @@ import { useState } from "react";
 import { CabModal } from "../Modals/CabModal/CabModal";
 
 export const CabCard = ({cab}) => {
-  const {state,deleteSelectedCab}=useData();
+  const {state,deleteSelectedCab,assignedCab}=useData();
   const [showCabModal, setShowCabModal] = useState(false);
+  const [selectedDriver,setSelectedDriver] = useState(null)
   const [anchorEl, setAnchorEl] = useState(null);
   const open = anchorEl
   const handleClick = (event) => {
@@ -22,8 +23,13 @@ export const CabCard = ({cab}) => {
   const handleEditModal = () => {
     setAnchorEl(null)
     setShowCabModal(!showCabModal)
-
   }
+ 
+  const handleChange= (e) => {
+    assignedCab(e.target.value,cab.id)
+  }
+
+
   const {drivers}=state;
 
   return (
@@ -65,7 +71,7 @@ export const CabCard = ({cab}) => {
           </>
         </Modal>
       )}
-      <select className={styles.dropdown}>
+      <select className={styles.dropdown} value={selectedDriver} onChange={(e)=>handleChange(e)}>
         <option disabled selected>Assign Driver</option>
         {drivers.map(({name,id})=>(
           <option value={id}>{name}</option>

@@ -11,7 +11,6 @@ import { CabModal } from "../Modals/CabModal/CabModal";
 import { handleCopyToClipboard } from "../../utils/utilFunctions";
 import { getIndividualDriver } from "../../services";
 import { MdOutlineCancel } from "react-icons/md";
-import { async } from "q";
 
 export const CabCard = ({cab}) => {
   const {state,deleteSelectedCab,assignedCab,removedCab}=useData();
@@ -37,7 +36,6 @@ export const CabCard = ({cab}) => {
   }
  
   const handleChange= (e) => {
-    console.log(e.target.value,"value")
     setCabAssignedDriver(e.target.value)
     assignedCab(e.target.value,cab.id)
   }
@@ -90,7 +88,7 @@ export const CabCard = ({cab}) => {
           </>
         </Modal>
       )}
-      
+
       {cabAssignedDriver && <div className="">
         <img
             className={styles.img}

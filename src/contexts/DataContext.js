@@ -1,4 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
+import { useNavigate } from "react-router";
 import { dataReducer, initialState } from "../reducers/dataReducer";
 import { actionTypes } from "../utils/constants";
 
@@ -10,8 +11,10 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(dataReducer, initialState);
+  const navigate=useNavigate();
 
-  const { GET_ALL_DRIVERS, GET_ALL_CABS } = actionTypes;
+
+  const { GET_ALL_DRIVERS, GET_ALL_CABS, AUTHENTICATION, GUEST_LOGIN } = actionTypes;
 
   const getDrivers = async () => {
     try {
@@ -88,6 +91,30 @@ export const DataProvider = ({ children }) => {
     }
   }
 
+  const loginHandler=()=>
+  {
+    const {login:{name,password}}=state;
+    if(name==="Admin" && password==="123")
+    {
+      dispatch({type:AUTHENTICATION,payload:true});
+      getDrivers();
+      getAllCabs();
+      navigate("/home");
+      toast.success("Logged In, Welcome!");
+    }
+    else{
+      toast.error("Invalid Credentials");
+    }
+  }
+
+  const guestLoginHandler=()=>
+  {
+    dispatch({type:GUEST_LOGIN});
+    getDrivers();
+    getAllCabs();
+    navigate("/home");
+    toast.success("Logged In as Guest, Welcome!");
+  }
   const deleteSelectedCab= async (driverId) =>
   {
     try {
@@ -148,7 +175,8 @@ export const DataProvider = ({ children }) => {
   }
 
   return (
-    <DataContext.Provider value={{ state, dispatch, getDrivers, searchedDrivers, getAllCabs, searchedCabs, addNewDriver,deleteSelectedCab,deleteSelectedDriver,editSelectedDriver,editSelectedCab,addNewCab,assignedCab }}>
+
+    <DataContext.Provider value={{ state, dispatch, loginHandler, guestLoginHandler, getDrivers, searchedDrivers, getAllCabs, searchedCabs, addNewDriver,deleteSelectedCab,deleteSelectedDriver,editSelectedDriver,editSelectedCab }}>
       {children}
     </DataContext.Provider>
   );

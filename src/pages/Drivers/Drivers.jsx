@@ -1,5 +1,5 @@
 import styles from "./drivers.module.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { CiSearch } from "react-icons/ci";
 
@@ -17,10 +17,6 @@ export const Drivers = () => {
   const [showDriverModal, setShowDriverModal] = useState(false);
 
   const { SEARCH_DRIVERS } = actionTypes;
-
-  useEffect(() => {
-    getDrivers();
-  }, []);
 
   return (
     <div className={styles[`driver-container`]}>

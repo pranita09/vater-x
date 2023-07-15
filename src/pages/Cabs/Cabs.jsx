@@ -1,6 +1,8 @@
 import styles from "./cabs.module.css";
 import headerStyles from "../Drivers/drivers.module.css";
+
 import { useEffect, useState } from "react";
+
 import {CiSearch} from "react-icons/ci"
 import { actionTypes } from "../../utils/constants";
 import {useData} from "../../contexts/DataContext";
@@ -17,6 +19,7 @@ export const Cabs = () => {
   const {drivers, cabs, searchCabs}=state;
 
   const { SEARCH_CABS } = actionTypes;
+
 
   useEffect(()=>{getAllCabs();getDrivers()},[]);
 

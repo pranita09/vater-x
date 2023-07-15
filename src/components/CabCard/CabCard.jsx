@@ -93,7 +93,7 @@ export const CabCard = ({cab}) => {
       
       {cabAssignedDriver && <div className="">
         <img
-            className={styles.img}
+            className={styles[`driver-img`]}
             alt="img"
             src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png"
             width={68}

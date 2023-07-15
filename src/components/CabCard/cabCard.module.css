@@ -44,3 +44,8 @@
     margin: 1rem 0;
     padding: 0.5rem 3rem;
 }
+.icon {
+    display: flex;
+    align-items: start;
+    align-self: start;
+}

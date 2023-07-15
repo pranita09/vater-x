@@ -2,7 +2,7 @@ import styles from "./driverCard.module.css";
 import { DriverDetailsModal, DriverModal } from "..";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { BsTelephone } from "react-icons/bs";
-import { MdOutlineCable, MdOutlineEmail } from "react-icons/md";
+import { MdOutlineCancel, MdOutlineEmail } from "react-icons/md";
 
 import { handleCopyToClipboard } from "../../utils/utilFunctions";
 import { useState } from "react";
@@ -38,6 +38,10 @@ export const DriverCard = ({ driver }) => {
   const handleChange= (e) => {
     setDriverAssignedCab(e.target.value)
     assignedCab(driver.id,e.target.value)
+  }
+  const removeDriver = () =>{
+    removedCab(driver?.id, driverAssignedCab)
+    setDriverAssignedCab(null)
   }
 
 
@@ -120,7 +124,18 @@ export const DriverCard = ({ driver }) => {
           </>
         </Modal>
       )}
-
+      {driverAssignedCab && <div className={styles[`driver-card`]}>
+        <img
+            className={styles[`driver-img`]}
+            alt="img"
+            src="https://64.media.tumblr.com/8f738ecdaeb21216a3246f8b0b2512c6/763fa44ee059f802-e5/s400x600/85ccc7cdea62a007c2d7bc78629ee0079f683f64.png"
+            width={45}
+            height={45}
+          />
+          <strong className={styles.name}>{cabs.find(({id})=>id===driverAssignedCab)?.name}</strong>
+            <MdOutlineCancel className={styles[`driver-close-icon`]} onClick={()=>removeDriver()} />
+          
+      </div>} 
       {!driverAssignedCab && <select className={styles.dropdown} value={  driverAssignedCab} onChange={(e)=>handleChange(e)}>
         <option selected>Assign Driver</option>
         {cabs.map(({name,id})=><option value={id}>{name}</option>)}

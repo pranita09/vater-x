@@ -11,7 +11,6 @@ import { CabModal } from "../Modals/CabModal/CabModal";
 import { handleCopyToClipboard } from "../../utils/utilFunctions";
 import { getIndividualDriver } from "../../services";
 import { MdOutlineCancel } from "react-icons/md";
-import { async } from "q";
 
 export const CabCard = ({cab}) => {
   const {state,deleteSelectedCab,assignedCab,removedCab, getDrivers}=useData();
